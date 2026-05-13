@@ -1,0 +1,30 @@
+{
+  "name": "prescription-reminder-api",
+  "version": "1.0.0",
+  "description": "A backend solution addressing medication non-adherence by allowing users to store and manage digital prescription reminders using a Node.js/Express.js architecture.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shani767/Prescription-Reminder-Api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Shani767/Prescription-Reminder-Api/issues"
+  },
+  "homepage": "https://github.com/Shani767/Prescription-Reminder-Api#readme",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
