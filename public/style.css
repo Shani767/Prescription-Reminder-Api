@@ -5,35 +5,35 @@
     --card-bg: rgba(25, 28, 39, 0.7);
     --card-hover: rgba(32, 36, 50, 0.8);
     --modal-bg: #151822;
-    
+
     --text-primary: #f0f2f8;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
-    
+
     --primary: #7e22ce;
     --primary-hover: #9333ea;
     --primary-light: rgba(126, 34, 206, 0.2);
-    
+
     --accent: #3b82f6;
     --accent-light: rgba(59, 130, 246, 0.2);
-    
+
     --danger: #ef4444;
     --danger-light: rgba(239, 68, 68, 0.2);
     --success: #10b981;
-    
+
     --border: rgba(255, 255, 255, 0.08);
     --border-hover: rgba(255, 255, 255, 0.15);
-    
+
     --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
     --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
     --shadow-glow: 0 0 20px rgba(126, 34, 206, 0.3);
-    
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-full: 9999px;
-    
+
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -51,7 +51,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     /* Soft background gradient */
-    background-image: 
+    background-image:
         radial-gradient(circle at 15% 50%, rgba(126, 34, 206, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
     background-attachment: fixed;
@@ -311,8 +311,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .prescription-card:hover {
@@ -390,7 +397,8 @@ body {
 }
 
 /* Loading State */
-.loading-state, .empty-state {
+.loading-state,
+.empty-state {
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
@@ -414,7 +422,9 @@ body {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Modal */
@@ -507,7 +517,8 @@ label {
     color: var(--text-secondary);
 }
 
-input, select {
+input,
+select {
     width: 100%;
     padding: 12px 16px;
     background: rgba(0, 0, 0, 0.2);
@@ -519,7 +530,8 @@ input, select {
     transition: var(--transition);
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-light);
@@ -580,15 +592,20 @@ select option {
     transform: translateX(0);
 }
 
-.toast.success { border-left-color: var(--success); }
-.toast.error { border-left-color: var(--danger); }
+.toast.success {
+    border-left-color: var(--success);
+}
+
+.toast.error {
+    border-left-color: var(--danger);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
     .app-container {
         flex-direction: column;
     }
-    
+
     .sidebar {
         width: 100%;
         height: auto;
@@ -598,19 +615,19 @@ select option {
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .logo-area {
         margin-bottom: 0;
     }
-    
+
     .main-nav {
         display: none;
     }
-    
+
     .main-content {
         padding: 20px;
     }
-    
+
     .form-row {
         flex-direction: column;
         gap: 0;

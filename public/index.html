@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,71 +11,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="app-container">
-        <!-- Sidebar / Navigation -->
-        <aside class="sidebar">
-            <div class="logo-area">
-                <div class="logo-icon">Rx</div>
-                <h2>MedManager</h2>
+    <div class="app-container"></div>
+    <!-- Sidebar / Navigation -->
+    <aside class="sidebar">
+        <div class="logo-area">
+            <div class="logo-icon">Rx</div>
+            <h2>MedManager</h2>
+        </div>
+        <nav class="main-nav">
+            <a href="#" class="nav-item active">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Dashboard
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-titles">
+                <h1>Prescriptions</h1>
+                <p>Manage your daily medication schedule</p>
             </div>
-            <nav class="main-nav">
-                <a href="#" class="nav-item active">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                    Dashboard
-                </a>
-            </nav>
-        </aside>
+            <button class="btn btn-primary" id="openAddModalBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add New
+            </button>
+        </header>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <header class="top-header">
-                <div class="header-titles">
-                    <h1>Prescriptions</h1>
-                    <p>Manage your daily medication schedule</p>
+        <section class="dashboard-stats" id="dashboardStats">
+            <div class="stat-card">
+                <div class="stat-icon purple-gradient">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
-                <button class="btn btn-primary" id="openAddModalBtn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    Add New
-                </button>
-            </header>
+                <div class="stat-info">
+                    <h3>Total Patients</h3>
+                    <p id="statTotalPatients">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon blue-gradient">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.5 20.5A7.5 7.5 0 1 0 18 13"></path>
+                        <path d="M18 18l4 4"></path>
+                        <path d="M14 6h4"></path>
+                        <path d="M16 4v4"></path>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <h3>Active Meds</h3>
+                    <p id="statTotalMeds">0</p>
+                </div>
+            </div>
+        </section>
 
-            <section class="dashboard-stats" id="dashboardStats">
-                <div class="stat-card">
-                    <div class="stat-icon purple-gradient">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3>Total Patients</h3>
-                        <p id="statTotalPatients">0</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon blue-gradient">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.5 20.5A7.5 7.5 0 1 0 18 13"></path><path d="M18 18l4 4"></path><path d="M14 6h4"></path><path d="M16 4v4"></path></svg>
-                    </div>
-                    <div class="stat-info">
-                        <h3>Active Meds</h3>
-                        <p id="statTotalMeds">0</p>
-                    </div>
-                </div>
-            </section>
+        <!-- List Section -->
+        <section class="prescription-list-section">
+            <div class="section-header">
+                <h2>Current Reminders</h2>
+            </div>
 
-            <!-- List Section -->
-            <section class="prescription-list-section">
-                <div class="section-header">
-                    <h2>Current Reminders</h2>
+            <div class="grid-container" id="prescriptionGrid">
+                <!-- Cards will be injected here via JS -->
+                <div class="loading-state" id="loadingState">
+                    <div class="spinner"></div>
+                    <p>Loading prescriptions...</p>
                 </div>
-                
-                <div class="grid-container" id="prescriptionGrid">
-                    <!-- Cards will be injected here via JS -->
-                    <div class="loading-state" id="loadingState">
-                        <div class="spinner"></div>
-                        <p>Loading prescriptions...</p>
-                    </div>
-                </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
     </div>
 
     <!-- Modal for Add/Edit -->
@@ -83,7 +103,10 @@
             <div class="modal-header">
                 <h2 id="modalTitle">Add Prescription</h2>
                 <button class="close-btn" id="closeModalBtn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
                 </button>
             </div>
             <form id="prescriptionForm">
@@ -129,4 +152,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

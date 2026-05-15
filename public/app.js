@@ -38,7 +38,7 @@ function setupEventListeners() {
     closeModalBtn.addEventListener('click', closeModal);
     cancelFormBtn.addEventListener('click', closeModal);
     prescriptionForm.addEventListener('submit', handleFormSubmit);
-    
+
     // Close modal when clicking outside
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) closeModal();
@@ -50,7 +50,7 @@ async function fetchPrescriptions() {
     try {
         const response = await fetch(`${API_BASE_URL}/getall`);
         const data = await response.json();
-        
+
         prescriptions = data;
         updateStats();
         renderPrescriptions();
@@ -78,7 +78,7 @@ async function createPrescription(data) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-        
+
         if (response.ok) {
             showToast('Prescription added successfully', 'success');
             closeModal();
@@ -99,7 +99,7 @@ async function updatePrescription(id, data) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
-        
+
         if (response.ok) {
             showToast('Prescription updated successfully', 'success');
             closeModal();
@@ -115,12 +115,12 @@ async function updatePrescription(id, data) {
 
 async function deletePrescription(id) {
     if (!confirm('Are you sure you want to delete this reminder?')) return;
-    
+
     try {
         const response = await fetch(`${API_BASE_URL}/delete/${id}`, {
             method: 'DELETE'
         });
-        
+
         if (response.ok) {
             showToast('Prescription deleted', 'success');
             fetchPrescriptions();
@@ -153,11 +153,11 @@ function renderPrescriptions() {
     }
 
     prescriptionGrid.innerHTML = '';
-    
+
     prescriptions.forEach(rx => {
         // Handle MongoDB _id vs id
         const id = rx._id || rx.id;
-        
+
         const card = document.createElement('div');
         card.className = 'prescription-card';
         card.innerHTML = `
@@ -202,9 +202,9 @@ function renderPrescriptions() {
 
 function updateStats() {
     if (!prescriptions) return;
-    
+
     statTotalMeds.textContent = prescriptions.length;
-    
+
     // Calculate unique patients
     const uniquePatients = new Set(prescriptions.map(rx => rx.patientName));
     statTotalPatients.textContent = uniquePatients.size;
@@ -213,7 +213,7 @@ function updateStats() {
 // Modal & Form Handling
 function openModal(rx = null) {
     prescriptionForm.reset();
-    
+
     if (rx) {
         modalTitle.textContent = 'Edit Prescription';
         const id = rx._id || rx.id;
@@ -232,9 +232,9 @@ function openModal(rx = null) {
         const minutes = String(now.getMinutes()).padStart(2, '0');
         reminderTimeInput.value = `${hours}:${minutes}`;
     }
-    
+
     modalOverlay.classList.add('active');
-    
+
     // Focus first input
     setTimeout(() => patientNameInput.focus(), 100);
 }
@@ -244,7 +244,7 @@ function closeModal() {
 }
 
 // Ensure editPrescription is available globally for the inline onclick handlers
-window.editPrescription = function(id) {
+window.editPrescription = function (id) {
     const rx = prescriptions.find(p => (p._id === id || p.id === id));
     if (rx) {
         openModal(rx);
@@ -255,7 +255,7 @@ window.deletePrescription = deletePrescription;
 
 function handleFormSubmit(e) {
     e.preventDefault();
-    
+
     const formData = {
         patientName: patientNameInput.value.trim(),
         medicationName: medicationNameInput.value.trim(),
@@ -263,9 +263,9 @@ function handleFormSubmit(e) {
         frequency: frequencyInput.value,
         reminderTime: reminderTimeInput.value
     };
-    
+
     const id = prescriptionIdInput.value;
-    
+
     if (id) {
         updatePrescription(id, formData);
     } else {
@@ -277,21 +277,21 @@ function handleFormSubmit(e) {
 function showToast(message, type = 'success') {
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
-    
-    const icon = type === 'success' 
+
+    const icon = type === 'success'
         ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
         : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
-        
+
     toast.innerHTML = `
         ${icon}
         <span style="font-weight: 500">${message}</span>
     `;
-    
+
     toastContainer.appendChild(toast);
-    
+
     // Trigger animation
     setTimeout(() => toast.classList.add('show'), 10);
-    
+
     // Remove after 3 seconds
     setTimeout(() => {
         toast.classList.remove('show');
