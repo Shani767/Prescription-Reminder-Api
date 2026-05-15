@@ -19,8 +19,6 @@ mongoose.connect(MONGOURL).then(() => {
     });
 }).catch((error) => console.log(error));  
 
-app.get("/", (req, res) => {
-    res.send("<h1>Database connected successfully.</h1><p>The Digital Prescription Reminder API is running.</p>");
-});
+app.use(express.static("public"));
 
 app.use("/api/prescription", route);  
