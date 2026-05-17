@@ -302,11 +302,18 @@ function showToast(message, type = 'success') {
 function formatTime(timeStr) {
     if (!timeStr) return '';
     try {
-        const [hours, minutes] = timeStr.split(':');
-        const h = parseInt(hours, 10);
+        let cleanStr = timeStr.replace(/\s*(AM|PM|am|pm)\s*/g, '');
+        const parts = cleanStr.split(':');
+        if (parts.length < 2) return timeStr;
+        
+        const h = parseInt(parts[0], 10);
+        if (isNaN(h)) return timeStr;
+        
         const ampm = h >= 12 ? 'PM' : 'AM';
         const formattedH = h % 12 || 12;
-        return `${formattedH}:${minutes} ${ampm}`;
+        const cleanMins = parts[1].trim().substring(0, 2);
+        
+        return `${formattedH}:${cleanMins} ${ampm}`;
     } catch (e) {
         return timeStr;
     }
